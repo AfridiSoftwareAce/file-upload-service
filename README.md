@@ -1,4 +1,4 @@
-# 📂 File Upload Service – Node.js (Terralogic Assignment)
+# 📂 File Upload Service – Node.js 
 
 This project is a **secure file upload service** built with **Node.js**, **Express**, and **Multer**.
 
