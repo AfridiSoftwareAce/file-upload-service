@@ -1,5 +1,7 @@
 const multer = require('multer');
 const path = require('path');
+const { isValidFile } = require('../utils/validateFile');
+
 
 // Disk Storage
 const storage = multer.diskStorage({
@@ -13,14 +15,11 @@ filename: (req, file, cb) => {
 
 // Validate file type
 const fileFilter = (req, file, cb) => {
-const allowedTypes = ['.png', '.jpg', '.jpeg', '.pdf'];
-const mimeTypes = ['image/png', 'image/jpeg', 'application/pdf'];
-  const ext = path.extname(file.originalname).toLowerCase();
-  if (allowedTypes.includes(ext) && mimeTypes.includes(file.mimetype)) {
-  cb(null, true);
-} else {
-  cb(new Error('Only images and PDFs are allowed'));
-}
+  if (isValidFile(file)) {
+    cb(null, true);
+  } else {
+    cb(new Error('Only images and PDFs are allowed'));
+  }
 };
 
 module.exports = multer({
